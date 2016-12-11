@@ -1,0 +1,15 @@
+{
+  "name": "ContactsApplication",
+  "homepage": "https://github.com/priyankthakkar/angulardemo",
+  "description": "This is a Contacts managment applicaiton, developed using HTML, Angularjs and Bootstrap",
+  "main": "",
+  "keywords": [
+    "Angular",
+    "Bootstrap",
+    "HTML"
+  ],
+  "authors": [
+    "Priyank Thakkar"
+  ],
+  "license": "MIT"
+}
