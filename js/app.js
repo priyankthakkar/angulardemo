@@ -1,9 +1,15 @@
 var app = angular.module('minmax', []);
 
-app.controller('MinMaxController', function($scope){
+app.controller('MinMaxController', function($scope, $http){
   $scope.formModel = {};
 
   $scope.onSubmit = function(){
-    console.log($scope.formModel);
+    $http.post('https://minmax-server.herokuapp.com/register/', $scope.formModel).
+      then(function(data){
+        console.log(':)');
+      },
+      function(data){
+        console.log(':(');
+      });
   };
 });
