@@ -1,93 +1,84 @@
 <!DOCTYPE html>
-<html ng-app="minmax">
-  <head>
+<html ng-app="angularcontacts">
+
+<head>
     <meta name="viewport" content="width= device-width, initial-scale= 1">
     <title>Contacts Application</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/ladda/dist/ladda-themeless.min.css">
     <link rel="stylesheet" type="text/css" href="css/app.css">
-  </head>
-  <body>
+</head>
+
+<body>
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a href="/" class="navbar-brand">Contacts</a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Contacts</a>
+            </div>
         </div>
-      </div>
     </nav>
-    <div class="container main-content" ng-controller="MinMaxController">
-      <form ng-submit="onSubmit()"
-        novalidate="novalidate">
-        <div class="form-group">
-          <label for="name">Name: </label>
-          <input type="text"
-            id="name"
-            class="form-control"
-            placeholder="Name"
-            ng-model="formModel.name"
-            required="required">
+    <div class="container main-content" ng-controller="PersonsController">
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Birthdate</th>
+                    </tr>
+                    <tr ng-repeat="person in persons" ng-click="setSelectedIndex(person, $index)" ng-style="{
+                        backgroundColor: selectedIndex == $index? 'lightgray': ''
+                    }">
+                        <td>
+                            {{ $index }}
+                        </td>
+                        <td>
+                            {{ person.name }}
+                        </td>
+                        <td>
+                            {{ person.email }}
+                        </td>
+                        <td>
+                            {{ person.birthdate | date:'longDate' }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  Selected Contact
+                </div>
+                <div class="panel-body">
+                  <dl class="">
+                    <dd>Name:</dd>
+                    <dt>{{ selectedPerson.name }}</dt>
+                    <dd>Email:</dd>
+                    <dt>{{ selectedPerson.email }}</dt>
+                    <dd>Birthdate:</dd>
+                    <dt>{{ selectedPerson.birthdate }}</dt>
+                    <dd>Phonenumber:</dd>
+                    <dt>{{ selectedPerson.phoennumber }}</dt>
+                    <dd>Address:</dd>
+                    <dt>{{ selectedPerson.address }}</dt>
+                    <dd>City:</dd>
+                    <dt>{{ selectedPerson.city }}</dt>
+                    <dd>Country:</dd>
+                    <dt>{{ selectedPerson.country }}</dt>
+                  </dl>
+                </div>
+              </div>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email: </label>
-          <input type="email"
-            id="email"
-            class="form-control"
-            placeholder="Email"
-            ng-model="formModel.email"
-            required="required">
-        </div>
-        <div class="form-group">
-          <label for="username">Username: </label>
-          <input type="text"
-            id="username"
-            class="form-control"
-            placeholder="Username"
-            ng-pattern="/^[A-Za-z0-9_]{1,32}$/"
-            ng-pattern-err-type="badUsername"
-            ng-model="formModel.username"
-            required="required"
-            mg-minlength="7">
-        </div>
-        <div class="form-group">
-          <label for="age">Age: </label>
-          <input type="number"
-            name="age"
-            class="form-control"
-            placeholder="Age"
-            min="18"
-            ng-min-err-type="tooYoung"
-            max="64"
-            ng-max-err-type="tooOld"
-            ng-model="formModel.age"
-            required="required">
-        </div>
-        <div class="form-group">
-          <label for="sex">Sex</label>
-          <select class="form-control"
-            id="sex"
-            ng-model="formModel.sex"
-            required="required">
-            <option value="">Choose Sex</option>
-            <<option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="password">Password: </label>
-          <input type="password"
-            id="password"
-            class="form-control"
-            placeholder="Password"
-            ng-model="formModel.password"
-            required="required"
-            ng-minlength="10">
-        </div>
-        <div class="form-group">
-          <button type="submit" id="btn-register" class="btn btn-primary">Register</button>
-        </div>
-      </form>
+
     </div>
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-auto-validate/dist/jcs-auto-validate.js"></script>
+    <script type="text/javascript" src="bower_components/spin.js/spin.js"></script>
+    <script type="text/javascript" src="bower_components/ladda/dist/ladda.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ladda/dist/angular-ladda.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-  </body>
+</body>
+
 </html>
